@@ -1,7 +1,7 @@
 
 package Clases;
 
-public class Contacto {
+public class Contacto implements Comparable<Contacto>{
     private int dni;
     private String nombre;
     private String apellido;
@@ -61,8 +61,13 @@ public class Contacto {
         return      "\nDNI: " + getDni() +
                         "\nApellido: " + getApellido() + 
                         "\nNombre: " + getNombre() + 
-                        "\n Ciudad: " + getCiudad() + 
+                        "\nCiudad: " + getCiudad() + 
                         "\nDirección: " + getDireccion();
+    }
+
+    @Override
+    public int compareTo(Contacto otro) {
+        return Integer.compare(this.dni, otro.dni);
     }
     
 }
