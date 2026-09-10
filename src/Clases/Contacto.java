@@ -55,6 +55,14 @@ public class Contacto {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
+
+    @Override
+    public String toString() {
+        return      "\nDNI: " + getDni() +
+                        "\nApellido: " + getApellido() + 
+                        "\nNombre: " + getNombre() + 
+                        "\n Ciudad: " + getCiudad() + 
+                        "\nDirección: " + getDireccion();
+    }
     
 }
