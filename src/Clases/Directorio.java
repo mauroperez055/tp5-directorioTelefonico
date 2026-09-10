@@ -47,19 +47,15 @@ public class Directorio {
     
     // dada una ciudad devuelve un ArrayList con los contactos asociados a esa ciudad
     public ArrayList<Contacto> buscarContactos(String ciudad) {
-        TreeSet<Contacto> contactosEncontrados = new TreeSet<>();
-        ArrayList<Contacto> contactos = new ArrayList<>();
+        ArrayList<Contacto> contactosEcontrados = new ArrayList<>();
         
         for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
             if (entry.getValue().getCiudad().equals(ciudad)) {
-                contactosEncontrados.add(entry.getValue());
+                contactosEcontrados.add(entry.getValue());
             }
         }
         
-        for (Contacto c : contactosEncontrados) {
-            contactos.add(c);
-        }
-        return contactos;
+        return contactosEcontrados;
     }
     
     //dado un numero elimina el contacto del directorio

@@ -36,12 +36,13 @@ public class Main {
         }
         
         // metodo buscar por ciudad funciona
-        ArrayList<Contacto> contacto = agenda.buscarContactos("Manchester");
+        ArrayList<Contacto> contacto = agenda.buscarContactos("Madrid");
         System.out.println("\nContactos de la ciudad:");
         for (Contacto contactoCiudad : contacto) {
             System.out.println(contactoCiudad.toString());
         }
         
+        // metodo eliminar funciona
         agenda.borrarContacto(2657203650L);
         System.out.println("\n");
         agenda.listarContactos();
