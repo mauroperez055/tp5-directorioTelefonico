@@ -1,20 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vistas;
 
-/**
- *
- * @author Mauro Perez
- */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName());
 
-    /**
-     * Creates new form frmMenuPrincipal
-     */
     public FrmMenuPrincipal() {
         initComponents();
     }
@@ -51,11 +41,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 871, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addGap(0, 438, Short.MAX_VALUE)
         );
 
         mnuClientes.setText("Clientes");
@@ -71,10 +61,20 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         mniBuscarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mniBuscarCliente.setText("Buscar Cliente");
+        mniBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBuscarClienteActionPerformed(evt);
+            }
+        });
         mnuClientes.add(mniBuscarCliente);
 
         mniBorrarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mniBorrarCliente.setText("Borrar Cliente");
+        mniBorrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBorrarClienteActionPerformed(evt);
+            }
+        });
         mnuClientes.add(mniBorrarCliente);
 
         jMenuBar1.add(mnuClientes);
@@ -82,9 +82,19 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuDirectorio.setText("Directorio");
 
         mniBuscarPorCiudad.setText("Buscar Clientes por Ciudad");
+        mniBuscarPorCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBuscarPorCiudadActionPerformed(evt);
+            }
+        });
         mnuDirectorio.add(mniBuscarPorCiudad);
 
         mniBuscarPorApellido.setText("Buscar Teléfono por Apellido");
+        mniBuscarPorApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBuscarPorApellidoActionPerformed(evt);
+            }
+        });
         mnuDirectorio.add(mniBuscarPorApellido);
 
         jMenuBar1.add(mnuDirectorio);
@@ -92,6 +102,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuCiudades.setText("Ciudades");
 
         mniAgregarCiudad.setText("Agregar Ciudad");
+        mniAgregarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniAgregarCiudadActionPerformed(evt);
+            }
+        });
         mnuCiudades.add(mniAgregarCiudad);
 
         jMenuBar1.add(mnuCiudades);
@@ -139,6 +154,56 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         escritorio.add(agregarCliente);
         agregarCliente.moveToFront();
     }//GEN-LAST:event_mniAgregarClienteActionPerformed
+
+    private void mniBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        IfrmBuscarCliente buscarCliente = new IfrmBuscarCliente();
+        buscarCliente.setVisible(true);
+        escritorio.add(buscarCliente);
+        buscarCliente.moveToFront();
+    }//GEN-LAST:event_mniBuscarClienteActionPerformed
+
+    private void mniBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBorrarClienteActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        IfrmBorrarCliente borrarCliente = new IfrmBorrarCliente();
+        borrarCliente.setVisible(true);
+        escritorio.add(borrarCliente);
+        borrarCliente.moveToFront();
+    }//GEN-LAST:event_mniBorrarClienteActionPerformed
+
+    private void mniBuscarPorCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBuscarPorCiudadActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        IfrmBuscarClienteCiudad buscarClienteCiudad = new IfrmBuscarClienteCiudad();
+        buscarClienteCiudad.setVisible(true);
+        escritorio.add(buscarClienteCiudad);
+        buscarClienteCiudad.moveToFront();
+    }//GEN-LAST:event_mniBuscarPorCiudadActionPerformed
+
+    private void mniBuscarPorApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBuscarPorApellidoActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        IfrmBuscarTelefonoApellido buscarTelefonoApellido = new IfrmBuscarTelefonoApellido();
+        buscarTelefonoApellido.setVisible(true);
+        escritorio.add(buscarTelefonoApellido);
+        buscarTelefonoApellido.moveToFront();
+    }//GEN-LAST:event_mniBuscarPorApellidoActionPerformed
+
+    private void mniAgregarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAgregarCiudadActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        IfrmAgregarCiudad agregarCiudad = new IfrmAgregarCiudad();
+        agregarCiudad.setVisible(true);
+        escritorio.add(agregarCiudad);
+        agregarCiudad.moveToFront();
+    }//GEN-LAST:event_mniAgregarCiudadActionPerformed
 
     /**
      * @param args the command line arguments
