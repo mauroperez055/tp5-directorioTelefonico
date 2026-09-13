@@ -14,6 +14,10 @@ public class Directorio {
         this.directorio = new TreeMap<>();
     }
     
+    public TreeSet<Long> getTelefono(){
+        return new TreeSet<Long>(directorio.keySet());
+    }
+    
     public void agregarContacto(Contacto contacto, Long numero) {
         if (!directorio.containsKey(numero)) {
             directorio.put(numero, contacto);
