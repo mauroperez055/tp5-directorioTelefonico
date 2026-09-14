@@ -20,6 +20,7 @@ public class Directorio {
         return new TreeSet<Long>(directorio.keySet());
     }
     
+    // devuelve una coleccion de objetos tipo Contacto
     public Collection<Contacto> getContacto() {
         return directorio.values();
     }

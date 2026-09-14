@@ -43,6 +43,11 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        lstTelefono.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstTelefonoValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstTelefono);
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -69,6 +74,11 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
 
         btnBorrarCliente.setText("Borrar Cliente/s");
         btnBorrarCliente.setToolTipText("");
+        btnBorrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarClienteActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +146,57 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         llenarListaTelefono();
     }//GEN-LAST:event_txtTelefonoKeyReleased
+
+    private void lstTelefonoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTelefonoValueChanged
+        // TODO add your handling code here:
+        
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+        
+        String seleccionado = lstTelefono.getSelectedValue();
+        
+        if (seleccionado == null) {
+            return;
+        }
+
+        Long nroSeleccionado = Long.parseLong(seleccionado);
+
+        Contacto contacto = directorio.buscarContacto(nroSeleccionado);
+
+        if (contacto == null) {
+            return;
+        }
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        
+        modelo.setRowCount(0);
+        
+        modelo.addRow(new Object[] {
+            contacto.getDni(),
+            contacto.getApellido(),
+            contacto.getNombre(),
+            contacto.getDireccion(),
+            contacto.getCiudad(),
+            nroSeleccionado
+        });
+    }//GEN-LAST:event_lstTelefonoValueChanged
+
+    private void btnBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClienteActionPerformed
+        // TODO add your handling code here:
+        String seleccionado = lstTelefono.getSelectedValue();
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        
+        if (seleccionado == null) {
+            return;
+        }
+        
+        Long nroSeleccionado = Long.parseLong(seleccionado);
+        
+        directorio.borrarContacto(nroSeleccionado);
+        llenarListaTelefono(); // actualiza la lista
+        modelo.setRowCount(0); // limpia la tabla
+    }//GEN-LAST:event_btnBorrarClienteActionPerformed
 
     public void llenarListaTelefono() {
         DefaultListModel<String> modelo = new DefaultListModel<>();
