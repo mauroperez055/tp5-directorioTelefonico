@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class FrmMenuPrincipal extends javax.swing.JFrame {
     
@@ -176,6 +177,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     
     public static Directorio getDirectorio() {
         return directorio;
+    }
+    
+    public static void borraFilasTabla(DefaultTableModel modelo) {
+        int filas = modelo.getRowCount() -1;
+        for (int i = filas; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
     }
     
     private void mniAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAgregarClienteActionPerformed

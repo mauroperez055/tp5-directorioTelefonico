@@ -170,7 +170,7 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
         
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
         
-        modelo.setRowCount(0);
+        FrmMenuPrincipal.borraFilasTabla(modelo);
         
         modelo.addRow(new Object[] {
             contacto.getDni(),
@@ -195,7 +195,7 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
         
         directorio.borrarContacto(nroSeleccionado);
         llenarListaTelefono(); // actualiza la lista
-        modelo.setRowCount(0); // limpia la tabla
+        FrmMenuPrincipal.borraFilasTabla(modelo);
     }//GEN-LAST:event_btnBorrarClienteActionPerformed
 
     public void llenarListaTelefono() {

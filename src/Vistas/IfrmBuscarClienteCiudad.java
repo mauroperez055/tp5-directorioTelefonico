@@ -142,7 +142,7 @@ public class IfrmBuscarClienteCiudad extends javax.swing.JInternalFrame {
         
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
         
-        modelo.setRowCount(0);
+        FrmMenuPrincipal.borraFilasTabla(modelo);
         
         for (Map.Entry<Long, Contacto> entry : contactos) {
             Contacto cont = entry.getValue();
