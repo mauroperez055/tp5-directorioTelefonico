@@ -4,6 +4,7 @@ package Vistas;
 import Clases.Contacto;
 import Clases.Directorio;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
 
@@ -42,6 +43,11 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        lstDNI.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstDNIValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstDNI);
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -55,21 +61,15 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
                 "DNI", "Apellido", "Nombre", "Dirección", "Ciudad", "Teléfono"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(tblClientes);
 
         btnBorrarCliente.setText("Borrar Cliente/s");
@@ -95,8 +95,8 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(txtDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(227, 227, 227)
                         .addComponent(lblTitulo)
@@ -106,14 +106,14 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
                         .addComponent(btnBorrarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalir)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(lblTitulo)
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -122,7 +122,7 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBorrarCliente)
                     .addComponent(btnSalir))
@@ -142,6 +142,39 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
         llenarListaDNI();
     }//GEN-LAST:event_txtDNIKeyReleased
 
+    private void lstDNIValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDNIValueChanged
+        // TODO add your handling code here:
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+        
+        String dniSeleccionado = lstDNI.getSelectedValue();
+        
+        if (dniSeleccionado == null) {
+            return;
+        }
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        
+        modelo.setRowCount(0);
+        
+        for (Contacto contacto : directorio.getContacto()) {
+            if (contacto.getDni().toString().equals(dniSeleccionado)) {
+                modelo.addRow(new Object[] {
+                    contacto.getDni(),
+                    contacto.getApellido(),
+                    contacto.getNombre(),
+                    contacto.getDireccion(),
+                    contacto.getCiudad(),
+                    directorio.getTelefono()
+                });
+                break;
+            }
+        }
+
+        tblClientes.setModel(modelo);
+    }//GEN-LAST:event_lstDNIValueChanged
+
     public void llenarListaDNI() {
         DefaultListModel<String> modelo = new DefaultListModel<>();
         
@@ -149,10 +182,9 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
             if (contacto.getDni().toString().contains(txtDNI.getText())) {
                 modelo.addElement(contacto.getDni().toString());
             }
-            
         }
-        System.out.println(modelo);
         lstDNI.setModel(modelo);
+        lstDNI.clearSelection();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
