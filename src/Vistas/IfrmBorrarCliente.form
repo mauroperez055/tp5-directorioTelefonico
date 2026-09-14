@@ -96,6 +96,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDNI">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDNIKeyReleased"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -178,7 +181,8 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnBorrarCliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Borrar Cliente"/>
+        <Property name="text" type="java.lang.String" value="Borrar Cliente/s"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">

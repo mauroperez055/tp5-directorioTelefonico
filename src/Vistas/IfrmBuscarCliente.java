@@ -1,17 +1,23 @@
 
 package Vistas;
 
+import Clases.Contacto;
 import Clases.Directorio;
+import java.util.Map;
 import java.util.TreeSet;
 import javax.swing.DefaultListModel;
 
 public class IfrmBuscarCliente extends javax.swing.JInternalFrame {
 
     private Directorio directorio = FrmMenuPrincipal.getDirectorio();
+    
+    // creo un set de telefonos obteniendo las keys del directorio 
     private TreeSet<Long> telefono = directorio.getTelefono();
     
     public IfrmBuscarCliente() {
         initComponents();
+        
+        // lleno la lista con los telefonos disponibles
         llenarListaTelefonos();
         
     }
@@ -120,7 +126,18 @@ public class IfrmBuscarCliente extends javax.swing.JInternalFrame {
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTelefono.setText("Teléfono:");
 
+        lstTelefono.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstTelefonoValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstTelefono);
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -196,13 +213,33 @@ public class IfrmBuscarCliente extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-       
+    private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
+        // TODO add your handling code here:
+        llenarListaTelefonos();
+    }//GEN-LAST:event_txtTelefonoKeyReleased
+
+    private void lstTelefonoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTelefonoValueChanged
+        // TODO add your handling code here:
+        String seleccionado = lstTelefono.getSelectedValue();
+        
+        if (seleccionado == null) {
+            return;
+        }
+        
+        Long nroSeleccionado = Long.parseLong(seleccionado);
+        Contacto contacto = directorio.buscarContacto(nroSeleccionado);
+        txtDNI.setText(contacto.getDni().toString());
+        txtApellido.setText(contacto.getApellido());
+        txtNombre.setText(contacto.getNombre());
+        txtCiudad.setText(contacto.getCiudad());
+        txtDomicilio.setText(contacto.getDireccion());
+    }//GEN-LAST:event_lstTelefonoValueChanged
+
+    // metodo para llenar la lista con los telefonos disponibles   
     public void llenarListaTelefonos() {
         DefaultListModel<String> modelo = new DefaultListModel<>();
-        System.out.println("Cantidad de teléfonos: " + directorio.getTelefono().size());
         
         for (Long tel : telefono) {
-            System.out.println("Teléfono: " + tel);
             if (tel.toString().contains(txtTelefono.getText())) {
                 modelo.addElement(tel.toString());
             }

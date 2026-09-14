@@ -7,12 +7,16 @@ import java.util.ArrayList;
 
 public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
 
+    // creo una lista con las ciudades agregadas
     private ArrayList<String> ciudades = FrmMenuPrincipal.getCiudades();
+    
+    //obtengo el directorio con sus claves y contactos
    private Directorio directorio = FrmMenuPrincipal.getDirectorio();
     
     public IfrmAgregarCliente() {
         initComponents();
         
+        //lleno el combo box con las ciudades
         for (String ciudad : ciudades){
             cboCiudad.addItem(ciudad);
         }
@@ -197,6 +201,7 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    // creo el contacto y lo guardo en el directorio
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         String nombre, apellido, ciudad, domicilio;
@@ -214,7 +219,7 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
         
         FrmMenuPrincipal.limpiarCampos(pnlTelefono);
         FrmMenuPrincipal.limpiarCampos(pnlDatos);
-        System.out.println(contacto.toString());
+        System.out.println(contacto.toString()); // para control
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 

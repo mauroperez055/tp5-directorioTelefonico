@@ -158,6 +158,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         return ciudades;
     }
     
+    // limpio los campos del formulario
     public static void limpiarCampos(JPanel  jPanel) {
         JComboBox combo = null;
         for (int i = 0; i < jPanel.getComponents().length; i++) {

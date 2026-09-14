@@ -103,6 +103,7 @@ public class IfrmAgregarCiudad extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    // guardo las ciudades
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         String ciudad = txtNombreCiudad.getText().toUpperCase().trim();

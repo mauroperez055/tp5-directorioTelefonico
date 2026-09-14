@@ -2,13 +2,13 @@
 package Clases;
 
 public class Contacto implements Comparable<Contacto>{
-    private int dni;
+    private Integer dni;
     private String nombre;
     private String apellido;
     private String ciudad;
     private String direccion;
 
-    public Contacto(int dni, String nombre, String apellido, String ciudad, String direccion) {
+    public Contacto(Integer dni, String nombre, String apellido, String ciudad, String direccion) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -16,11 +16,11 @@ public class Contacto implements Comparable<Contacto>{
         this.direccion = direccion;
     }
 
-    public int getDni() {
+    public Integer getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(Integer dni) {
         this.dni = dni;
     }
 

@@ -2,6 +2,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,10 +15,15 @@ public class Directorio {
         this.directorio = new TreeMap<>();
     }
     
+    // devuelvo un set solo con las claves del directorio que son los telefonos
     public TreeSet<Long> getTelefono(){
         return new TreeSet<Long>(directorio.keySet());
     }
     
+    public Collection<Contacto> getContacto() {
+        return directorio.values();
+    }
+
     public void agregarContacto(Contacto contacto, Long numero) {
         if (!directorio.containsKey(numero)) {
             directorio.put(numero, contacto);
