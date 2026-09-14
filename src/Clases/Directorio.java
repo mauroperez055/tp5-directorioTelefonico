@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -13,6 +14,10 @@ public class Directorio {
 
     public Directorio() {
         this.directorio = new TreeMap<>();
+    }
+    
+    public Set<Map.Entry<Long, Contacto>> getEntradas() {
+        return directorio.entrySet();
     }
     
     // devuelvo un set solo con las claves del directorio que son los telefonos

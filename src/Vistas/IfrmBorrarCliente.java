@@ -13,7 +13,6 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
     public IfrmBorrarCliente() {
         initComponents();
         llenarListaTelefono();
-        modelo.setRowCount(0);
     }
 
     @SuppressWarnings("unchecked")
