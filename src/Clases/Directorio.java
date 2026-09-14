@@ -44,17 +44,21 @@ public class Directorio {
         }
         return null;
     }
+
     
-    // dado un apellido devuelve un Set con los números asociados a ese apellido
-    public TreeSet<Long> buscarTelefono(String apellido) {
-        TreeSet<Long> nrosEncontrados = new TreeSet<>();
+    public ArrayList<Map.Entry<Long, Contacto>> buscarTelefono(String apellido) {
+        
+        ArrayList<Map.Entry<Long, Contacto>> contactos = new ArrayList<>();
         
         for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
-            if (entry.getValue().getApellido().equals(apellido)) {
-                nrosEncontrados.add(entry.getKey());
+            Contacto contacto = entry.getValue();
+            
+            if (contacto.getApellido().equals(apellido)) {
+                contactos.add(entry);
             }
         }
-        return nrosEncontrados;
+        
+        return contactos;
     }
     
     // busca los contactos de la ciudad dada y los devuelve a cada uno junto con sus datos
@@ -63,7 +67,6 @@ public class Directorio {
         ArrayList<Map.Entry<Long, Contacto>> contactos = new ArrayList<>();
 
         for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
-
             Contacto contacto = entry.getValue();
 
             if (contacto.getCiudad().equals(ciudad)) {

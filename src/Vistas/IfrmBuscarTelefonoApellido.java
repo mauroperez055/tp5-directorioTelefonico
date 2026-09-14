@@ -3,8 +3,11 @@ package Vistas;
 
 import Clases.Contacto;
 import Clases.Directorio;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeSet;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 public class IfrmBuscarTelefonoApellido extends javax.swing.JInternalFrame {
 
@@ -42,6 +45,11 @@ public class IfrmBuscarTelefonoApellido extends javax.swing.JInternalFrame {
             }
         });
 
+        lstApellidos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstApellidosValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstApellidos);
 
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -134,6 +142,40 @@ public class IfrmBuscarTelefonoApellido extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         llenarListaApellidos();
     }//GEN-LAST:event_txtApellidoKeyReleased
+
+    private void lstApellidosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstApellidosValueChanged
+        // TODO add your handling code here:
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+        
+        String apellidoSeleccionado = lstApellidos.getSelectedValue();
+        
+        if (apellidoSeleccionado == null) {
+            return;
+        }
+        
+        ArrayList<Map.Entry<Long, Contacto>> contactos = directorio.buscarTelefono(apellidoSeleccionado);
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
+        
+        FrmMenuPrincipal.borraFilasTabla(modelo);
+        
+        for (Map.Entry<Long, Contacto> entry : contactos) {
+            Contacto cont = entry.getValue();
+            
+            if (cont.getApellido().equals(apellidoSeleccionado)) {
+                modelo.addRow(new Object[] {
+                    cont.getDni(),
+                    cont.getApellido(),
+                    cont.getNombre(),
+                    cont.getDireccion(),
+                    cont.getCiudad(),
+                    entry.getKey()
+                });
+            }
+        }
+    }//GEN-LAST:event_lstApellidosValueChanged
 
     public void llenarListaApellidos() {
         DefaultListModel modelo = new DefaultListModel();

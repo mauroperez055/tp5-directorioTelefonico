@@ -30,9 +30,9 @@ public class Main {
         System.out.println(c);
         
         //metodo buscar telefono funciona
-        TreeSet<Long> tel = agenda.buscarTelefono("Lucero");
+        ArrayList<Map.Entry<Long, Contacto>> tel = agenda.buscarTelefono("Lucero");
         System.out.println("\nNumeros asociados: ");
-        for (Long num : tel) {
+        for (Map.Entry<Long, Contacto> num : tel) {
             System.out.println(num);
         }
         
