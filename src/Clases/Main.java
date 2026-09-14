@@ -2,6 +2,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeSet;
 
 public class Main {
@@ -36,9 +37,9 @@ public class Main {
         }
         
         // metodo buscar por ciudad funciona
-        ArrayList<Contacto> contacto = agenda.buscarContactos("Madrid");
+        ArrayList<Map.Entry<Long, Contacto>> contacto = agenda.buscarContactos("Madrid");
         System.out.println("\nContactos de la ciudad:");
-        for (Contacto contactoCiudad : contacto) {
+        for (Map.Entry<Long, Contacto> contactoCiudad : contacto) {
             System.out.println(contactoCiudad.toString());
         }
         

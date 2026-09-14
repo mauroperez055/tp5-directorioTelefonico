@@ -138,13 +138,13 @@ public class IfrmBuscarClienteCiudad extends javax.swing.JInternalFrame {
         
         String ciudad = cboCiudades.getSelectedItem().toString();
         
-        ArrayList<Contacto> contactos = directorio.buscarContactos(ciudad);
+        ArrayList<Map.Entry<Long, Contacto>> contactos = directorio.buscarContactos(ciudad);
         
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
         
         modelo.setRowCount(0);
         
-        for (Map.Entry<Long, Contacto> entry : directorio.getEntradas()) {
+        for (Map.Entry<Long, Contacto> entry : contactos) {
             Contacto cont = entry.getValue();
             
             if (cont.getCiudad().equals(ciudad)) {
@@ -158,17 +158,6 @@ public class IfrmBuscarClienteCiudad extends javax.swing.JInternalFrame {
                 });
             }
         }
-        
-//        for (Contacto cont : contactos) {
-//                modelo.addRow(new Object[] {
-//                    cont.getDni(),
-//                    cont.getApellido(),
-//                    cont.getNombre(),
-//                    cont.getDireccion(),
-//                    ciudad,
-//                    
-//                });
-//        }
         
     }//GEN-LAST:event_cboCiudadesItemStateChanged
 

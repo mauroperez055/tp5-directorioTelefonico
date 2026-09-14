@@ -16,10 +16,6 @@ public class Directorio {
         this.directorio = new TreeMap<>();
     }
     
-    public Set<Map.Entry<Long, Contacto>> getEntradas() {
-        return directorio.entrySet();
-    }
-    
     // devuelvo un set solo con las claves del directorio que son los telefonos
     public TreeSet<Long> getTelefono(){
         return new TreeSet<Long>(directorio.keySet());
@@ -61,17 +57,21 @@ public class Directorio {
         return nrosEncontrados;
     }
     
-    // dada una ciudad devuelve un ArrayList con los contactos asociados a esa ciudad
-    public ArrayList<Contacto> buscarContactos(String ciudad) {
-        ArrayList<Contacto> contactosEcontrados = new ArrayList<>();
-        
+    // busca los contactos de la ciudad dada y los devuelve a cada uno junto con sus datos
+    public ArrayList<Map.Entry<Long, Contacto>> buscarContactos(String ciudad) {
+
+        ArrayList<Map.Entry<Long, Contacto>> contactos = new ArrayList<>();
+
         for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
-            if (entry.getValue().getCiudad().equals(ciudad)) {
-                contactosEcontrados.add(entry.getValue());
+
+            Contacto contacto = entry.getValue();
+
+            if (contacto.getCiudad().equals(ciudad)) {
+                contactos.add(entry);
             }
         }
-        
-        return contactosEcontrados;
+
+        return contactos;
     }
     
     //dado un numero elimina el contacto del directorio
