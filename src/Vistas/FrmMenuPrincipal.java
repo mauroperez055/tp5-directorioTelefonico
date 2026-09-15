@@ -4,6 +4,7 @@ package Vistas;
 import Clases.Directorio;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -184,6 +185,29 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         for (int i = filas; i >= 0; i--) {
             modelo.removeRow(i);
         }
+    }
+    
+    public static boolean validarCamposVacios(JPanel jPanel) {
+        
+        for (int i = 0; i < jPanel.getComponents().length; i++) {
+            
+            if (jPanel.getComponents()[i] instanceof JTextField) {
+                JTextField caja = (JTextField) jPanel.getComponents()[i];
+                if (caja.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Debe completar todos los campos.", "Atención!", JOptionPane.WARNING_MESSAGE);
+                    return false;
+                }
+            }
+            
+            if (jPanel.getComponents()[i] instanceof JComboBox) {
+                JComboBox combo = (JComboBox) jPanel.getComponents()[i];
+                if (combo.getSelectedItem().equals("") || !combo.isEnabled()) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una ciudad.", "Atención!", JOptionPane.WARNING_MESSAGE);
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     private void mniAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAgregarClienteActionPerformed

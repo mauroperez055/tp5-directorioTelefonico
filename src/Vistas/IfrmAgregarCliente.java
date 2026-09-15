@@ -4,6 +4,7 @@ package Vistas;
 import Clases.Contacto;
 import Clases.Directorio;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
 
@@ -17,10 +18,14 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
         initComponents();
         
         //lleno el combo box con las ciudades
-        for (String ciudad : ciudades){
-            cboCiudad.addItem(ciudad);
+        if (ciudades.isEmpty()) {
+            cboCiudad.setEnabled(false);
+        } else {
+            for (String ciudad : ciudades){
+                cboCiudad.addItem(ciudad);
+            }
         }
-       
+
     }
 
     @SuppressWarnings("unchecked")
@@ -64,6 +69,12 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
 
         lblDomicilio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDomicilio.setText("Domicilio:");
+
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDNIKeyTyped(evt);
+            }
+        });
 
         cboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
@@ -204,16 +215,26 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
     // creo el contacto y lo guardo en el directorio
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        if (!FrmMenuPrincipal.validarCamposVacios(pnlDatos) || !FrmMenuPrincipal.validarCamposVacios(pnlTelefono)) {
+            return;
+        }
+        
         String nombre, apellido, ciudad, domicilio;
         int dni;
-        Long telefono = Long.parseLong(txtTelefono.getText());
+        Long telefono;
         
+        if (txtDNI.getText().length() < 8) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un DNI válido.");
+            return;
+        } 
+
         dni = Integer.parseInt(txtDNI.getText());
         nombre = txtNombre.getText().toUpperCase().trim();
         apellido = txtApellido.getText().toUpperCase().trim();
         ciudad = (String) cboCiudad.getSelectedItem();
         domicilio = txtDomicilio.getText().toUpperCase().trim();
-        
+        telefono = Long.parseLong(txtTelefono.getText());
+
         Contacto contacto = new Contacto(dni, nombre, apellido, ciudad, domicilio);
         directorio.agregarContacto(contacto, telefono);
         
@@ -221,6 +242,19 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
         FrmMenuPrincipal.limpiarCampos(pnlDatos);
         System.out.println(contacto.toString()); // para control
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+
+        if (!Character.isDigit(caracter)) {
+            evt.consume();
+        }
+
+        if (txtDNI.getText().length() >= 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDNIKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

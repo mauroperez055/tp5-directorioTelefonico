@@ -118,6 +118,7 @@ public class IfrmAgregarCiudad extends javax.swing.JInternalFrame {
         
         FrmMenuPrincipal.agregarCiudad(ciudad);
         FrmMenuPrincipal.limpiarCampos(pnlNombreCiudad);
+        btnGuardar.setEnabled(false);
         System.out.println(ciudad);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -129,7 +130,6 @@ public class IfrmAgregarCiudad extends javax.swing.JInternalFrame {
             btnGuardar.setEnabled(false);
         }
     }//GEN-LAST:event_txtNombreCiudadKeyReleased
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
