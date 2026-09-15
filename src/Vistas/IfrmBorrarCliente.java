@@ -4,6 +4,7 @@ package Vistas;
 import Clases.Contacto;
 import Clases.Directorio;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
@@ -13,6 +14,7 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
     public IfrmBorrarCliente() {
         initComponents();
         llenarListaTelefono();
+        btnBorrarCliente.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +42,9 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -159,6 +164,8 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
         if (seleccionado == null) {
             return;
         }
+        
+        btnBorrarCliente.setEnabled(true);
 
         Long nroSeleccionado = Long.parseLong(seleccionado);
 
@@ -193,10 +200,23 @@ public class IfrmBorrarCliente extends javax.swing.JInternalFrame {
         
         Long nroSeleccionado = Long.parseLong(seleccionado);
         
-        directorio.borrarContacto(nroSeleccionado);
-        llenarListaTelefono(); // actualiza la lista
-        FrmMenuPrincipal.borraFilasTabla(modelo);
+        int eleccion = JOptionPane.showConfirmDialog(this, "¿Borrar contacto?", "Atención!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        
+        if (eleccion == 0) {
+            directorio.borrarContacto(nroSeleccionado);
+            llenarListaTelefono(); // actualiza la lista
+            FrmMenuPrincipal.borraFilasTabla(modelo);
+            btnBorrarCliente.setEnabled(false);
+        } else if (eleccion == 1) {
+            return;
+        }
+
     }//GEN-LAST:event_btnBorrarClienteActionPerformed
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        // TODO add your handling code here:
+        FrmMenuPrincipal.validarEnteros(evt, txtTelefono);
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     public void llenarListaTelefono() {
         DefaultListModel<String> modelo = new DefaultListModel<>();

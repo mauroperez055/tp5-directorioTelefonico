@@ -256,6 +256,7 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
         Contacto contacto = new Contacto(dni, nombre, apellido, ciudad, domicilio);
         directorio.agregarContacto(contacto, telefono);
         
+        JOptionPane.showMessageDialog(this, "Se agregó correctamente el cliente en el directorio.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         FrmMenuPrincipal.limpiarCampos(pnlTelefono);
         FrmMenuPrincipal.limpiarCampos(pnlDatos);
         System.out.println(contacto.toString()); // para control
