@@ -43,6 +43,9 @@ public class IfrmBuscarTelefonoApellido extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
         });
 
         lstApellidos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -176,6 +179,11 @@ public class IfrmBuscarTelefonoApellido extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_lstApellidosValueChanged
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        // TODO add your handling code here:
+        FrmMenuPrincipal.validarString(evt, txtApellido);
+    }//GEN-LAST:event_txtApellidoKeyTyped
 
     public void llenarListaApellidos() {
         DefaultListModel modelo = new DefaultListModel();

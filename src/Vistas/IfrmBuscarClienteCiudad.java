@@ -16,9 +16,14 @@ public class IfrmBuscarClienteCiudad extends javax.swing.JInternalFrame {
     public IfrmBuscarClienteCiudad() {
         initComponents();
         
-        for (String ciudad : ciudades){
-            cboCiudades.addItem(ciudad);
+        if (ciudades.isEmpty()) {
+            cboCiudades.setEnabled(false);
+        } else {
+            for (String ciudad : ciudades){
+                cboCiudades.addItem(ciudad);
+            }
         }
+        
     }
 
     @SuppressWarnings("unchecked")
