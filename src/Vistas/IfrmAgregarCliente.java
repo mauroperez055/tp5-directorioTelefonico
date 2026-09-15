@@ -76,6 +76,18 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+
         cboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
@@ -130,6 +142,12 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTelefono.setText("Teléfono:");
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTelefonoLayout = new javax.swing.GroupLayout(pnlTelefono);
         pnlTelefono.setLayout(pnlTelefonoLayout);
@@ -245,16 +263,27 @@ public class IfrmAgregarCliente extends javax.swing.JInternalFrame {
 
     private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
         // TODO add your handling code here:
+        FrmMenuPrincipal.validarEnteros(evt, txtDNI);
+    }//GEN-LAST:event_txtDNIKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        // TODO add your handling code here:
         char caracter = evt.getKeyChar();
 
         if (!Character.isDigit(caracter)) {
             evt.consume();
         }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
-        if (txtDNI.getText().length() >= 8) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtDNIKeyTyped
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        // TODO add your handling code here:
+        FrmMenuPrincipal.validarString(evt, txtApellido);
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        FrmMenuPrincipal.validarString(evt, txtNombre);
+    }//GEN-LAST:event_txtNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

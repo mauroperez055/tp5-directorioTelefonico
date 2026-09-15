@@ -210,6 +210,26 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         return true;
     }
     
+    public static void validarEnteros(java.awt.event.KeyEvent evt, JTextField jText) {
+        char caracter = evt.getKeyChar();
+
+        if (!Character.isDigit(caracter)) {
+            evt.consume();
+        }
+
+        if (jText.getText().length() >= 8) {
+            evt.consume();
+        }
+    }
+    
+    public static void validarString(java.awt.event.KeyEvent evt, JTextField jText) {
+        char caracter = evt.getKeyChar();
+        
+        if (!Character.isAlphabetic(caracter) && !Character.isSpaceChar(caracter)) {
+            evt.consume();
+        }
+    }
+    
     private void mniAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAgregarClienteActionPerformed
         // TODO add your handling code here:
         escritorio.removeAll();

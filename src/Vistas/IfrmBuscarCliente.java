@@ -137,6 +137,9 @@ public class IfrmBuscarCliente extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -234,6 +237,11 @@ public class IfrmBuscarCliente extends javax.swing.JInternalFrame {
         txtCiudad.setText(contacto.getCiudad());
         txtDomicilio.setText(contacto.getDireccion());
     }//GEN-LAST:event_lstTelefonoValueChanged
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        // TODO add your handling code here:
+        FrmMenuPrincipal.validarEnteros(evt, txtTelefono);
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     // metodo para llenar la lista con los telefonos disponibles   
     public void llenarListaTelefonos() {
