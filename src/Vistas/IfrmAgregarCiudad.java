@@ -6,6 +6,7 @@ public class IfrmAgregarCiudad extends javax.swing.JInternalFrame {
 
     public IfrmAgregarCiudad() {
         initComponents();
+        btnGuardar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +41,12 @@ public class IfrmAgregarCiudad extends javax.swing.JInternalFrame {
 
         lblNombreCiudad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombreCiudad.setText("Nombre Ciudad:");
+
+        txtNombreCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreCiudadKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlNombreCiudadLayout = new javax.swing.GroupLayout(pnlNombreCiudad);
         pnlNombreCiudad.setLayout(pnlNombreCiudadLayout);
@@ -106,11 +113,22 @@ public class IfrmAgregarCiudad extends javax.swing.JInternalFrame {
     // guardo las ciudades
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        
         String ciudad = txtNombreCiudad.getText().toUpperCase().trim();
+        
         FrmMenuPrincipal.agregarCiudad(ciudad);
         FrmMenuPrincipal.limpiarCampos(pnlNombreCiudad);
         System.out.println(ciudad);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtNombreCiudadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCiudadKeyReleased
+        // TODO add your handling code here:
+        if (txtNombreCiudad.getText().length() >= 3) {
+            btnGuardar.setEnabled(true);
+        } else {
+            btnGuardar.setEnabled(false);
+        }
+    }//GEN-LAST:event_txtNombreCiudadKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
